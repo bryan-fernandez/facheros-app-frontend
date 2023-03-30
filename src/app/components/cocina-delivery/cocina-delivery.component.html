@@ -1,0 +1,12 @@
+<app-dashboard></app-dashboard>
+<div class="cocina_delivery">
+    <h1>Atencion Delivery</h1>
+
+    <h3>(Sin preparar)</h3>
+
+    <app-cocina-table [delivery]="true" [estado]="'PENDIENTE'"></app-cocina-table>
+
+    <h3>(Sin pagar)</h3>
+
+    <app-cocina-table [delivery]="true" [estado]="'PREPARADO'"></app-cocina-table>
+</div>

@@ -1,0 +1,85 @@
+<app-dashboard></app-dashboard>
+<div class="pedido">
+    <div class="pedido_header">
+        <div class="pedido_header_left">
+            <h1>Pedido</h1>
+            <div class="button_form_group">
+                <div class="button_form_control">
+                    <mat-hint>Nuevo Pedido</mat-hint>
+                    <button type="button" mat-fab (click)="limpiarFormulario()">
+                        <mat-icon>check</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="pedido_form" (ngSubmit)="enviarPedido()" role="form" [formGroup]="pedidoForm">
+        <div class="fields">
+            <div class="pedido_form_control" id="cliente_control">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Cliente</mat-label>
+                    <input matInput id="cliente" formControlName="cliente">
+                </mat-form-field>
+            </div>
+
+            <div class="pedido_form_control" id="nroMesa_control">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nro de Mesa</mat-label>
+                    <mat-select id="mesa_select" formControlName="nroMesa">
+                        <mat-option value="1">M-1</mat-option>
+                        <mat-option value="2">M-2</mat-option>
+                        <mat-option value="3">M-3</mat-option>
+                        <mat-option value="4">M-4</mat-option>
+                        <mat-option value="5">M-5</mat-option>
+                        <mat-option value="6">M-6</mat-option>
+                        <mat-option value="7">M-7</mat-option>
+                        <mat-option value="8">M-8</mat-option>
+                        <mat-option value="9">M-9</mat-option>
+                        <mat-option value="10">M-10</mat-option>
+                        <mat-option value="11">M-11</mat-option>
+                        <mat-option value="12">M-12</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="pedido_form_control" id="direccion_control">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput id="direccion" formControlName="direccion">
+                </mat-form-field>
+            </div>
+
+            <div class="pedido_form_control">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Tipo de Atencion</mat-label>
+                    <mat-select id="atencion_select" formControlName="tipoAtencion"
+                        (selectionChange)="atencion($event)">
+                        <mat-option value="1">Presencial</mat-option>
+                        <mat-option value="2">Delivery</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="pedido_form_control" id="celular_control">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Celular</mat-label>
+                    <input matInput type="tel" id="celular" formControlName="celular">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <app-platillo-table></app-platillo-table>
+
+        <div class="button_form_group">
+            <div class="button_form_control">
+                <mat-hint>Enviar Pedido</mat-hint>
+                <button type="submit" mat-fab>
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,47 @@
+<section class="login">
+    <div class="login_container" id="login_container">
+        <div class="logo">
+            <img src="../assets/img/facheros_logo_2.png" alt="Logo de facheros">
+        </div>
+
+        <mat-card>
+            <form (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="login_fields">
+                    <div class="field_group">
+                        <mat-form-field appearance="legacy" class="mat-form-field">
+                            <mat-label class="mat-label">Usuario</mat-label>
+                            <input matInput formControlName="username" required>
+                            <mat-icon matSuffix>person</mat-icon>
+                            <mat-error *ngIf="loginForm.controls.username.invalid">{{obtenerUsuarioError()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="field_group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label class="mat-label">Contraseña</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                            <a type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </a>
+                            <mat-error *ngIf="loginForm.controls.password.invalid">{{obtenerPasswordError()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+    
+                </div>
+    
+                <div class="button_login_container">
+                    <p>Ingresar</p>
+    
+                    <button type="submit" mat-fab aria-label="Example icon-button with a heart icon">
+                        <mat-icon>login</mat-icon>
+                      </button>
+                </div>
+    
+            </form>
+        </mat-card>
+        
+
+    </div>
+
+</section>

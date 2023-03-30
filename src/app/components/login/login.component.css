@@ -1,0 +1,124 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* margin: 0px auto; */
+    height: 100vh;
+    background: var(--color-primario);
+}
+
+.login_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 350px;
+    /* display: none; */
+    margin: 0px 20px;
+}
+
+.login .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login .logo img {
+    width: 100%;
+}
+
+.login .field_group {
+    margin-bottom: 20px;
+}
+
+.login .field_group .mat-label {
+    font-size: 14px;
+}
+
+.login .field_group input {
+    width: 100%;
+}
+
+.login form {
+    /* background-color: #fff; */
+    border-radius: 10px;
+    padding: 40px 0px;
+}
+
+.login .login_container .button_login_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: lighter;
+    color: #252525;
+}
+
+.login form button {
+    display: block;
+    width: 60px;
+    height: 60px;
+    padding: 10px 3px;
+    background-color: var(--color-alternativo);
+    border-radius: 100%;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transform: 300ms;
+}
+
+.login form button:hover {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+/*SPINNER*/
+
+@media screen and (min-width: 1000px) {
+    .login .field_group input {
+        height: 35px;
+        font-size: 18px;
+    }
+
+    .login form button {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media screen and (min-width: 532px) {
+    .login form {
+        padding: 40px 20px;
+    }
+    
+    .login .field_group .mat-label {
+        font-size: 18px;
+    }
+
+    .login .login_container .button_login_container {
+        font-size: 20px;
+    }
+}
+
+.example-container .mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-right-align {
+    -moz-appearance: textfield;
+}
+
+.mat-form-field {
+    width: 100%;
+}

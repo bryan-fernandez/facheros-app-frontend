@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root {
+    --color-primario: #292e2d; /*#292e2d*/
+    --color-secundario: #fff;
+    --color-alternativo: #e5e774;
+    --color-alternativo-blur: #e5e77493;
+    --color-alternativo-dark: #a3a541;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto',sans-serif;
+    font-size: 16px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+td {
+    cursor: pointer;
+}

@@ -1,0 +1,81 @@
+<div class="platillo_table">
+    <div class="platillo_container">
+        <div class="platillo_text">
+            <h1 class="titulo_platillos">Platillos Agregados</h1>
+            <p>(Selecciona uno para quitar de la lista)</p>
+        </div>
+
+        <div class="platillo_container_2">
+            <div class="platillo_fields">
+                <div class="pedido_form_control">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Agregar al Pedido</mat-label>
+                        <mat-select id="platillo_select" (selectionChange)="setearIdPlatillo($event)">
+                            <mat-option *ngFor="let p of platillos" [value]="p.codigo">{{p.platillo}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="pedido_form_control">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput type="number" id="cantidad2">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="button_form_group">
+
+                <div class="button_form_control">
+                    <mat-hint>Agregar Platillo</mat-hint>
+                    <button type="button" mat-fab (click)="agregarPlatillo()">
+                        <mat-icon>check</mat-icon>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="table_container">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let p">{{ p.platillo }}</td>
+            </ng-container>
+            <ng-container matColumnDef="subtotal">
+                <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+                <td mat-cell *matCellDef="let p">s/ {{ p.subtotal }}</td>
+            </ng-container>
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let p" [attr.colspan]="columnsToDisplay.length">
+                    <div class="detalle_elemento" [@detailExpand]="p == expandedElement ? 'expanded' : 'collapsed'">
+                        <div class="precio_elemento">
+                            <div class="precio_text"> Precio: s/ {{p.precio}} </div>
+                        </div>
+                        <div class="cantidad_elemento">
+                            <div class="cantidad_text">Cantidad: {{p.cantidad}}</div>
+                            <i class="fa-solid fa-circle-minus remove_circle" (click)="quitarPlatillo(p.codigo)"></i>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
+                [class.example-expanded-row]="expandedElement === row"
+                (click)="expandedElement = expandedElement === row ? null : row">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+
+        <h1 *ngIf="platillosAgregados.length == 0;">Aun no hay platillos agregados...</h1>
+
+    </div>
+
+    <div class="total_container">
+        <h3>Total</h3>
+        <h3>S/ {{total}}</h3>
+    </div>
+    
+</div>

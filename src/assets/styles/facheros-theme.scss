@@ -1,0 +1,90 @@
+@import '@angular/material/theming';
+
+@include mat-core();
+
+//Colores y variantes
+
+$color-primario: (
+    50 : #e5e6e6,
+    100 : #bfc0c0,
+    200 : #949796,
+    300 : #696d6c,
+    400 : #494d4d,
+    500 : #292e2d,
+    600 : #242928,
+    700 : #1f2322,
+    800 : #191d1c,
+    900 : #0f1211,
+    A100 : #58ffae,
+    A200 : #25ff95,
+    A400 : #00f179,
+    A700 : #00d86c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$color-secundario: (
+    50 : #fcfcee,
+    100 : #f7f8d5,
+    200 : #f2f3ba,
+    300 : #edee9e,
+    400 : #e9eb89,
+    500 : #e5e774,
+    600 : #e2e46c,
+    700 : #dee061,
+    800 : #dadd57,
+    900 : #d3d744,
+    A100 : #ffffff,
+    A200 : #fffff7,
+    A400 : #feffc4,
+    A700 : #fdffab,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+//Paleta de colores
+
+$facheros-paleta-primario: mat-palette($color-primario);
+$facheros-paleta-secundario: mat-palette($color-secundario);
+$facheros-paleta-warn: mat-palette($mat-red);
+
+$facheros-theme: mat-light-theme((
+    color: (
+        primary: $facheros-paleta-primario,
+        accent: $facheros-paleta-secundario,
+        warn: $facheros-paleta-warn
+    )
+));
+
+
+//APLICAR TEMA
+
+@include angular-material-theme($facheros-theme);

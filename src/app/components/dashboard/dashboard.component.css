@@ -1,0 +1,112 @@
+.navbar {
+    position: fixed;
+    padding: 10px 20px;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primario);
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .nav_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 97.58px;
+}
+
+.navbar .nav_header i {
+    font-size: 25px;
+    margin-right: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.navbar .nav_header img {
+    width: 200px;
+}
+
+.navbar.hide .nav_header img {
+    display: none;
+}
+
+.navbar.hide .nav_header i {
+    margin-bottom: 33px;
+    align-self: end;
+    padding-bottom: 4px;
+}
+
+.navbar .nav_body a span,
+.navbar .nav_footer p {
+    transition: 300ms;
+    opacity: 1;
+}
+
+.navbar.hide .nav_body a span,
+.navbar.hide .nav_body div span,
+.navbar.hide .nav_footer p {
+    display: none;
+    opacity: 0;
+}
+
+.hide {
+    max-width: 70px;
+}
+
+.navbar .nav_body {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+.navbar .nav_body #cocina .fa-caret-down {
+    font-size: 15px;
+}
+
+.navbar .nav_body #presencial,
+.navbar .nav_body #delivery {
+    padding-left: 80px;
+    margin-bottom: 20px;
+}
+
+.cerrar_item {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar .nav_body a i,
+.navbar .nav_body div i {
+    font-size: 25px;
+}
+
+.navbar .nav_body a,
+.navbar .nav_body div {
+    text-decoration: none;
+    color: #fff;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.navbar .nav_body a span,
+.navbar .nav_body div span {
+    margin-left: 30px;
+}
+
+.navbar .nav_footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    color: #fff;
+    align-items: end;
+}
+
+.navbar .nav_footer i {
+    font-size: 30px;
+    cursor: pointer;
+}

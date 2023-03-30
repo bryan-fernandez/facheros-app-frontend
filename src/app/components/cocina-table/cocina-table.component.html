@@ -1,0 +1,59 @@
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <ng-container matColumnDef="nroOrden">
+        <th mat-header-cell *matHeaderCellDef>Nro-Orden</th>
+        <td mat-cell *matCellDef="let p">{{ p.nroOrden }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let p">{{ p.cliente }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="montoTotal">
+        <th mat-header-cell *matHeaderCellDef>Monto Total</th>
+        <td mat-cell *matCellDef="let p">s/ {{ p.montoPedido }}</td>
+    </ng-container>
+    <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let p">{{ p.estado }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+            <div class="detalle_elemento" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="precio_elemento">
+                    <p>Platillos</p>
+                    <div class="precio_text" *ngFor="let platillo of element.platillos">- {{platillo.platillo}}
+                        ({{platillo.cantidad}})</div>
+                </div>
+                <div class="cantidad_elemento">
+                    <label for="platillo_atendido" *ngIf="setearCambioEstado()">¿Atendido?</label>
+                    <label for="platillo_atendido" *ngIf="!setearCambioEstado()">¿Pagado?</label>
+
+                    <div *ngIf="setearCambioEstado()">
+                        <div class="button_form_control">
+                            <button type="button" mat-fab id="pedido_atendido" (click)="cambiarEstado(element.codigo)">
+                                <mat-icon>check</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div *ngIf="!setearCambioEstado()">
+                        <div class="button_form_control">
+                            <button type="button" mat-fab id="pedido_pagado" (click)="cambiarEstado(element.codigo)">
+                                <mat-icon>attach_money</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
