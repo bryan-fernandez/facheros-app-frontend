@@ -5,8 +5,8 @@ export interface PlatilloResponse {
 }
 
 export interface PlatilloAgregado {
-    id: number,
-    nombre: string;
+    codigo: number,
+    platillo: string;
     precio: number;
     cantidad: number;
     subtotal: number;

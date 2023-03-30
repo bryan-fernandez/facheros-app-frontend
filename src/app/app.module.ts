@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlatilloTableComponent } from './components/platillo-table/platillo-table.component';
 import { CocinaPresencialComponent } from './components/cocina-presencial/cocina-presencial.component';
 import { CocinaTableComponent } from './components/cocina-table/cocina-table.component';
+import { DetallePedidoDialog } from './dialogs/detalle-pedido/detalle-pedido-dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -36,13 +39,15 @@ import { CocinaTableComponent } from './components/cocina-table/cocina-table.com
     CocinaDeliveryComponent,
     PlatilloTableComponent,
     CocinaPresencialComponent,
-    CocinaTableComponent
+    CocinaTableComponent,
+    DetallePedidoDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CommonModule,
     MatTableModule,
     MatDialogModule,
     MatIconModule,
@@ -52,7 +57,8 @@ import { CocinaTableComponent } from './components/cocina-table/cocina-table.com
     MatInputModule,
     MatCardModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

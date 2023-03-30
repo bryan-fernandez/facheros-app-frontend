@@ -1,0 +1,54 @@
+<h2>Pedido {{pedido.nroOrden}}</h2>
+
+<div class="detalle_pedido">
+    <div class="detalle_pedido_container">
+        <div class="detalle_pedido_item">
+            <p>Cliente </p >
+            <p class="detalle_col_text">{{pedido.cliente}}</p>
+        </div>
+        <div class="detalle_pedido_item">
+            <p>Nro Orden </p >
+            <p class="detalle_col_text">{{pedido.nroOrden}}</p>
+        </div>
+        <div class="detalle_pedido_item">
+            <p>Estado </p >
+            <p class="detalle_col_text">{{pedido.estado}}</p>
+        </div>
+    </div>
+
+    <div class="detalle_pedido_container">
+        <div class="detalle_pedido_item">
+            <p>Fecha de Creacion </p >
+            <p class="detalle_col_text">{{pedido.fechaCreacion}}</p>
+        </div>
+        <div class="detalle_pedido_item">
+            <p>Atencion</p >
+            <p class="detalle_col_text">{{pedido.atencion}}</p>
+        </div>
+        <div class="detalle_pedido_item">
+            <p>Estado</p >
+            <p class="detalle_col_text">{{pedido.estado}}</p>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="detalle_pedido_footer">
+    <div class="detalle_pedido_item">
+        <h3>Platillos &nbsp; ({{cantidadPlatillos}})</h3>
+        <div class="platillo_container">
+            <div *ngFor="let p of pedido.platillos" class="platillo_item">
+                <div>{{p.platillo}}</div>
+                <div>({{p.cantidad}})</div>
+            </div>
+        </div>
+    </div>
+    <div class="imprimir_pedido">
+        <button mat-fab color="primary" matTooltip="Imprimir pedido">
+            <mat-icon>print</mat-icon>
+        </button>
+    </div>
+</div>
+
+<!-- print -->

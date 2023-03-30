@@ -1,4 +1,37 @@
 <app-dashboard></app-dashboard>
 <div class="historial_pedido_container">
-    <p>historial-pedido works!</p>
+    <h1>Historial de Pedidos</h1>
+
+    <p>(Selecciona un pedido para ver mas detalles)</p>
+
+    <mat-form-field appearance="legacy">
+        <mat-label>Filtrar</mat-label>
+        <input matInput matInput (keyup)="aplicarFiltro($event)" placeholder="Nro de mesa o de Orden">
+      </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" recycleRows class="mat-elevation-z8">
+        <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef> Nro-Pedido </th>
+            <td mat-cell *matCellDef="let pedido"> #{{pedido.codigo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nroOrden">
+            <th mat-header-cell *matHeaderCellDef> Nro-Orden </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.nroOrden}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.cliente}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="montoTotal">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let pedido"> S/ &nbsp; {{pedido.montoPedido}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row matTooltip="Selecciona para ver mas detalles" (click)="mostrarDetalle(row)"
+            *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 </div>
