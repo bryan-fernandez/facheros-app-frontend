@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { PedidoDialog } from './dialogs/pedido/pedido-dialog';
+import { MensajeDialog } from './dialogs/mensaje/mensaje-dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HistorialPedidoComponent } from './components/historial-pedido/historial-pedido.component';
@@ -34,7 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LoginComponent,
     DashboardComponent,
     PedidoComponent,
-    PedidoDialog,
+    MensajeDialog,
     HistorialPedidoComponent,
     CocinaDeliveryComponent,
     PlatilloTableComponent,

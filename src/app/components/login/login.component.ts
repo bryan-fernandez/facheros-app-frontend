@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
+import { MensajeDialog } from 'src/app/dialogs/mensaje/mensaje-dialog';
 import { LoginRequest } from 'src/app/models/LoginModels';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl("", [Validators.required, Validators.minLength(10)])
   });
 
-  constructor(private router: Router, private app: AppComponent, private loginService: LoginService) { }
+  constructor(private router: Router, private app: AppComponent, private loginService: LoginService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.app.cerrarSesion();
@@ -55,10 +57,11 @@ export class LoginComponent implements OnInit {
       }, (err) => {
         console.log(err);
         this.app.ocultarSpinner();
+        this.dialog.open(MensajeDialog, {
+          data: errorLogin
+        })
       })
 
-    } else {
-      alert("Algo ocurrio mal...")
     }
   }
 
@@ -71,7 +74,12 @@ export class LoginComponent implements OnInit {
       return '*Campo Obligatorio*'
     }
 
-    // return `${this.loginForm.value.password?.length}/10`
     return this.loginForm.controls.password.hasError("minlength") ? `${this.loginForm.value.password?.length}/10` : ''
   }
+}
+
+const errorLogin = {
+  titulo: "Credenciales Incorrectas",
+  mensaje: "Usuario y/o contraseña incorrecto",
+  icon: "arrow_back"
 }

@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { PedidoDialog } from 'src/app/dialogs/pedido/pedido-dialog';
+import { MensajeDialog } from 'src/app/dialogs/mensaje/mensaje-dialog';
 import { PedidoDetalle, PedidoRequest } from 'src/app/models/PedidoModels';
 import { PedidoService } from 'src/app/service/pedido.service';
 import { PlatilloPedidoService } from 'src/app/service/platillo-pedido.service';
@@ -43,6 +43,7 @@ export class PedidoComponent implements OnInit {
 
   TITULO_DIALOG_PEDIDO_VACIO = "Pedido Incompleto";
   MENSAJE_DIALOG_PEDIDO_VACIO = "Complete todos los campos para poder enviar el pedido";
+  MENSAJE_DIALOG_PLATILLOS_VACIO = "Debe agregar por lo menos un platillo";
   ICON_DIALOG_PEDIDO_VACIO = "arrow_back_ios";
 
   TITULO_DIALOG_PEDIDO_ENVIADO = "";
@@ -64,16 +65,21 @@ export class PedidoComponent implements OnInit {
       if (this.envioPedido) {
         this.envioPedido = true;
       } else {
-        this.pedidoService.guardarPedido(this.crearPedido()).subscribe((data) => {
-          this.envioPedido = false;
-          this.pedidoId = data.codigo;
+        if (this.platillosAgregados.length !== 0) {
+          this.pedidoService.guardarPedido(this.crearPedido()).subscribe((data) => {
+            this.envioPedido = false;
+            this.pedidoId = data.codigo;
 
-          this.platilloPedidoService.guardarDetalles(this.crearDetallePedido()).subscribe((data) => {
-            this.app.ocultarSpinner();
-            this.abrirDialog(this.TITULO_DIALOG_PEDIDO_ENVIADO, this.MENSAJE_DIALOG_PEDIDO_ENVIADO, this.ICON_DIALOG_PEDIDO_ENVIADO);
-            this.limpiarTodo();
-          }, (err) => console.error(err))
-        });
+            this.platilloPedidoService.guardarDetalles(this.crearDetallePedido()).subscribe((data) => {
+              this.app.ocultarSpinner();
+              this.abrirDialog(this.TITULO_DIALOG_PEDIDO_ENVIADO, this.MENSAJE_DIALOG_PEDIDO_ENVIADO, this.ICON_DIALOG_PEDIDO_ENVIADO);
+              this.limpiarTodo();
+            }, (err) => console.error(err))
+          });
+        } else {
+          this.abrirDialog(this.TITULO_DIALOG_PEDIDO_VACIO, this.MENSAJE_DIALOG_PLATILLOS_VACIO, this.ICON_DIALOG_PEDIDO_VACIO);
+          this.app.ocultarSpinner();
+        }
       }
     }, (err) => {
       console.log(err);
@@ -182,7 +188,7 @@ export class PedidoComponent implements OnInit {
   }
 
   abrirDialog(titulo: string, mensaje: string, icon: string) {
-    this.dialog.open(PedidoDialog, {
+    this.dialog.open(MensajeDialog, {
       data: {
         titulo: titulo,
         mensaje: mensaje,
@@ -203,7 +209,7 @@ export class PedidoComponent implements OnInit {
     })
   }
 
-  limpiarTodo(){
+  limpiarTodo() {
     this.pedidoForm.reset();
     this.pedidoService.pedidoFinalizado.next(true);
   }

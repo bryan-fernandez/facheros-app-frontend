@@ -26,7 +26,7 @@ export class HistorialPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.pedidoService.obtenerPedidos().subscribe((data) => {
       this.pedidos = data;
-      this.pedidosMostrar = this.pedidos;
+      this.pedidosMostrar = this.pedidos.filter(p => p.estado === "PAGADO");
       this.parsearDatos();
       this.dataSource.data = this.pedidosMostrar;
     })
