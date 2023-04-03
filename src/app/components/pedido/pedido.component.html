@@ -20,7 +20,7 @@
             <div class="pedido_form_control" id="cliente_control">
                 <mat-form-field appearance="legacy">
                     <mat-label>Cliente</mat-label>
-                    <input matInput id="cliente" formControlName="cliente">
+                    <input matInput id="cliente" placeholder="Nombre y Apellido" formControlName="cliente">
                 </mat-form-field>
             </div>
 
@@ -47,7 +47,7 @@
             <div class="pedido_form_control" id="direccion_control">
                 <mat-form-field appearance="legacy">
                     <mat-label>Direccion</mat-label>
-                    <input matInput id="direccion" formControlName="direccion">
+                    <input matInput id="direccion" placeholder="Direccion y/o ubicación" formControlName="direccion">
                 </mat-form-field>
             </div>
 
@@ -65,7 +65,8 @@
             <div class="pedido_form_control" id="celular_control">
                 <mat-form-field appearance="legacy">
                     <mat-label>Celular</mat-label>
-                    <input matInput type="tel" id="celular" formControlName="celular" maxlength="9">
+                    <input matInput type="number" id="celular" maxlength="9" formControlName="celular" (keyup)="validarCelular($event)">
+                    <mat-hint class="celular_hint">{{contador}}/9</mat-hint>
                 </mat-form-field>
             </div>
         </div>

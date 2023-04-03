@@ -240,6 +240,19 @@ i {
     opacity: 0;
 }
 
+
+/* CELULAR */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.celular_hint {
+    text-align: end;
+    width: 100%;
+}
+
 @media screen and (min-width: 532px) {
     .pedido_header_left {
         flex-direction: row;
@@ -253,7 +266,7 @@ i {
     .pedido p {
         display: unset;
     }
-    
+
     .pedido_header .notebook_icon {
         display: none;
         pointer-events: none;

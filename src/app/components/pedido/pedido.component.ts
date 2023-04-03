@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
@@ -28,7 +28,7 @@ export class PedidoComponent implements OnInit {
     nroMesa: new FormControl(""),
     direccion: new FormControl(""),
     tipoAtencion: new FormControl(""),
-    celular: new FormControl("")
+    celular: new FormControl("", [Validators.maxLength(9)])
   });
 
   //Platillos
@@ -253,5 +253,10 @@ export class PedidoComponent implements OnInit {
       celular_control?.classList.remove("ocultar_caja");
       nroMesa_control?.classList.add("ocultar_caja");
     }
+  }
+
+  validarCelular(e: any) {
+    const c = e.target.value.toString().length;
+    this.contador = c;
   }
 }
